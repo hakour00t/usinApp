@@ -28,7 +28,7 @@
                         <label for="Apparaille" class="form-label">Selectioner L'apparille</label>
                             <div class="input-group ">
                                
-                                <select class="form-select" id="Apparaille">
+                                <select class="form-select" id="Apparaille" name="apparaille">
                                     <option selected>Numéro Apparaille</option>
                                     <option value="1">Apparaille 01</option>
                                     <option value="2">Apparaille 02</option>
@@ -38,10 +38,10 @@
 
                         <div class="col-md-3">
                             <label for="vitasse" class="form-label">Vitesse de coloration</label>
-                            <input type="Number" class="form-control"  id="vitasse" >
+                            <input type="number" class="form-control"  id="vitasse" name="vitesse" >
                         </div>
                         <div class="col-md-3">
-                        <label for="Apparaille" class="form-label">Fournisseure de fibre </label>
+                        <label for="Attellier" class="form-label">Fournisseure de fibre </label>
                             <div class="input-group ">
                                
                                 <select class="form-select" id="Apparaille">
@@ -52,15 +52,15 @@
                         </div>
 
                         <div class="col-md-3">
-                        <label for="Apparaille" class="form-label">Chifets </label>
+                        <label for="chifet" class="form-label">Chifets </label>
                             <div class="input-group ">
                                
-                                <select class="form-select" id="Apparaille">
+                                <select class="form-select" id="chifet" name="chifet">
                                     <option selected>Selectioner chifet</option>
-                                    <option value="1">Chifet A</option>
-                                    <option value="1">Chifet B</option>
-                                    <option value="1">Chifet C</option>
-                                    <option value="1">Chifet D</option>
+                                    <option value="a">Chifet A</option>
+                                    <option value="b">Chifet B</option>
+                                    <option value="c">Chifet C</option>
+                                    <option value="d">Chifet D</option>
                                 </select>
                             </div>
                         </div>
@@ -81,29 +81,29 @@
 
                         <div class="col-md-3">
                             <label for="long" class="form-label">Longueur </label>
-                            <input type="Number" class="form-control"  id="long" >
+                            <input type="Number" class="form-control"  id="long"  name="long">
                         </div>
                         
                         <div class="col-md-3">Qualité de Coloration
                             <label for="coloration" class="form-label">Q </label>
                              <div class="input-group-text">
-                                <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                <input class="form-check-input mt-0" type="checkbox" value="" name="colorQiolity">
                             </div>
                         </div>
                            <div class="col-md-3">Qualité de Bobinage
                             <label for="bobinage" class="form-label">Q </label>
                              <div class="input-group-text">
-                                <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                <input class="form-check-input mt-0" type="checkbox" value="" name="bobineQiolity">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <label for="tempiratuer" class="form-label">Tempirature du Moule </label>
-                            <input type="Number" class="form-control"  id="tempiratuer" >
+                            <input type="number" class="form-control"  id="tempiratuer" name="tempir">
                         </div>
 
                           <div class="col-md-3">
                             <label for="deti" class="form-label">Debit d'Azote </label>
-                            <input type="Number" class="form-control"  id="deti" >
+                            <input type="number" class="form-control"  id="deti" name="debitAzot" >
                         </div>
 
                         <div class="col-md-3">
@@ -123,7 +123,7 @@
 
                          <div class="col-md-3">
                             <label for="observ" class="form-label">Observation   </label>
-                            <input type="tetx" class="form-control"  id="observ" >
+                            <input type="tetx" class="form-control"  id="observ" name="Observ" >
                         </div>
 
             </form>
