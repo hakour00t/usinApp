@@ -125,10 +125,13 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('coloration.formullaire') }}">Charger le formullaire</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">no action</a></li>
+                                    <li><a class="dropdown-item" href="#">no action</a></li>>
                                 </ul>
                         </li>
+                        <li class="nav-item"><a href="{{ route('bobines.index') }}" class="nav-link">Liste des boubines nu</a></li>
+                        {{-- <li class="nav-item"><a href="{{ route('bobines.index') }}" class="nav-link">Liste des boubines nu</a></li> --}}
+
 
                           
                         <li class="nav-item"><a href="#" class="nav-link">Settings</a></li>

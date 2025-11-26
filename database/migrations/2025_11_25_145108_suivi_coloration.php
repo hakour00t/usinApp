@@ -22,7 +22,8 @@ return new class extends Migration
             $table->boolean('bobineQiolity');
             $table->float('tempir');
             $table->float('debitAzot');
-            $table->text('Observ');
+            $table->text('Observ')->nullable();
+            $table->timestamps();
            // $table->foreign('bobigneMere_id')->references('id')->on('bobignes')->onDelete('cascade');
         });
     }
