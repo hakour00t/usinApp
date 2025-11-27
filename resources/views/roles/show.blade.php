@@ -14,10 +14,9 @@
         <div class="card-body">
            
             @foreach ($role->permissions as $permission )
-            @endforeach
-           
+        
                 <label class="form-check-label" for="checkIndeterminate">{{ $permission->name}} </label>
-                 
+            @endforeach 
               
         </div>
         {{-- <div class="card-footer text-body-secondary">

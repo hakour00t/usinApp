@@ -36,7 +36,7 @@ class BobineController extends Controller
 
           $today = Carbon::now()->format('Ymd');
 
-                    $last = Bobine::where('id', 'like', $today . '%')->orderBy('id', 'desc')->first();
+            $last = Bobine::where('id', 'like', $today . '%')->orderBy('id', 'desc')->first();
 
                     if ($last) {
                         
@@ -48,7 +48,7 @@ class BobineController extends Controller
                     }
                     $newId = $today . "-G" . $nextNumber;
       // create bobine
-                    Bobine::create([
+        Bobine::create([
                         'id' => $newId,
                         'length' => $request->length,
                     ]);

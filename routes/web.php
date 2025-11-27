@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\rolesControlles;
 use App\Http\Controllers\permissionControlles;
 use App\Http\Controllers\BobineController;
+use App\Http\Controllers\FibreColoriController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,9 +41,11 @@ Route::resource('permission', permissionControlles::class);
 Route::get('/coloration/formullaire', [App\Http\Controllers\fileControlles::class, 'index'])->name('coloration.formullaire');
 Route::post('/file/coloratione', [App\Http\Controllers\fileControlles::class, 'index'])->name('file.coloration');
 
-// file.coloration
+// bobines 
 Route::resource('bobines', BobineController::class)->except(['show', 'edit' , 'create']);
+//fibreColori
+Route::resource('fibreColori', FibreColoriController::class);
 
-
+Route::get('/fibreColori/downloadPdf/{id}', [FibreColoriController::class, 'downloadPdf'])->name('fibreColori.downloadPdf');
 
 
