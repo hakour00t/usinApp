@@ -42,6 +42,10 @@
         @endif
 
         <li>Id de bobine mère : {{ $fibre->bobigneMere_id }}</li>
+
+
+          <li > L'opératuer :  {{$user->grad}} {{$user->first_name}}  {{$user->last_name}}</li>
+
     </ul>
 
 </body>

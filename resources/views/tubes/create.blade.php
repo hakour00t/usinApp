@@ -121,12 +121,12 @@
                         <label for="color" class="form-label">Bobine Mére </label>
                             <div class="input-group ">
                                
-                                <select class="form-select" id="color" name="bobigneMere_id" required >
+                                {{-- <select class="form-select" id="color" name="bobigneMere_id" required >
                                     @foreach ( $bobines as $bobine )
                                         <option value="{{ $bobine->id }}"  >Id : {{ $bobine->id }} Longure: {{ $bobine->length }} km </option>
                                     @endforeach
 
-                                </select>
+                                </select> --}}
                             </div>
                         </div>
 

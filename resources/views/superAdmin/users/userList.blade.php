@@ -4,6 +4,7 @@
 <div class="container">
    
     <a class="btn btn-primary" href=" {{ route('user.create') }}"  data-mdb-ripple-init>Crée un utilisatuer</a>
+  
                 
     @if (session('sucss'))
         <div class="alert alert-success">
@@ -21,15 +22,16 @@
       <th scope="col">Nom</th>
        <th scope="col">Prenom</th>
       <th scope="col">Grad</th>
-      <th scope="col">Options</th>
+      <th scope="col">Options </th>
     </tr>
   </thead>
   <tbody>
 
     @foreach ($users as $user )
+  
         <tr>
             
-            <td>{{ $user->last_name }} </td>
+            <td>{{ $user->last_name }}    </td>
             <td>{{ $user->first_name }} </td>
 
             <td>{{ $user->grad }} </td>

@@ -9,9 +9,9 @@
   
         
    <div class="row-1 "> 
-    <a type="button" class="btn btn-success col-5 " href="{{ route('fibreColori.create') }}" > Ajeuter un Fibre colorier</a>
+    <a type="button" class="btn btn-success col-5 " href="{{ route('tube.create') }}" > Ajeuter un Tube Lache</a>
          
-    <a href="{{ route('fibreColori.download.FibreList') }}" class="btn btn-primary col-5">Télécharger PDF</a>
+    {{-- <a href="{{ route('fibreColori.download.FibreList') }}" class="btn btn-primary col-5">Télécharger PDF</a> --}}
 
        
   </a>
@@ -37,20 +37,20 @@
     <tbody>
       
 
-      @foreach ($fibreColoris as $fibre )
+      @foreach ($tubes as $tube )
           <tr>
               
-              <td>{{ $fibre->id }} </td>
-              <td>{{ $fibre->color }} </td>
-              <td>{{ $fibre->long }} </td>
+              <td>{{ $tube->id }} </td>
+              <td>{{ $tube->color }} </td>
+              <td>{{ $tube->long }} </td>
 
               <td>
                 
-                <a class="btn btn-primary btn-sm" href="{{ route('fibreColori.show' , $fibre->id) }}" role="button">Plus</a>
-              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateBobine{{ $fibre->id }}">Modifier</button>    
-              <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $fibre->id }}" >Supprimer</button>
+                <a class="btn btn-primary btn-sm" href="{{ route('tube.show' , $tube->id) }}" role="button">Plus</a>
+              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateBobine{{ $tube->id }}">Modifier</button>    
+              <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $tube->id }}" >Supprimer</button>
               
-                      <div class="modal fade" id="deleteModal{{ $fibre->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                      <div class="modal fade" id="deleteModal{{ $tube->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                           <div class="modal-content">
                           <div class="modal-header">
@@ -62,7 +62,7 @@
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuller</button>
-                              <form action="{{ route('fibreColori.destroy' , $fibre->id) }}" id="deleteForm" method="POST" >
+                              <form action="{{ route('tube.destroy' , $tube->id) }}" id="deleteForm" method="POST" >
                                   @csrf
                                   @method('DELETE')
                                   <button type="submit" class="btn btn-danger fw-bold">Supprimer</button>

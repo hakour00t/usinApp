@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable ,HasRoles;
@@ -34,4 +35,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+ public function fibreColori(): HasMany
+ {
+     return $this->hasMany(fibreColori::class);
+ }
 }

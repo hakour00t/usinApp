@@ -7,8 +7,7 @@ use App\Http\Controllers\rolesControlles;
 use App\Http\Controllers\permissionControlles;
 use App\Http\Controllers\BobineController;
 use App\Http\Controllers\FibreColoriController;
-
-
+use App\Http\Controllers\TubLaicheController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +45,11 @@ Route::resource('bobines', BobineController::class)->except(['show', 'edit' , 'c
 //fibreColori
 Route::resource('fibreColori', FibreColoriController::class);
 
-Route::get('/fibreColori/downloadPdf/{id}', [FibreColoriController::class, 'downloadPdf'])->name('fibreColori.downloadPdf');
+Route::get('/fibreColori/downloadPdf/{id}', [FibreColoriController::class, 'downloadFibreFile'])->name('fibreColori.downloadPdf');
+// Route::get('/fibreColori/downloadListFiberColorie', [FibreColoriController::class, 'downloadListFiberColorie'])->name('fibreColori.downloadListFiberColorie');
+Route::get('/fibreColori/download/FibreList', [FibreColoriController::class, 'downloadListFiberColorie'])->name('fibreColori.download.FibreList');
+// Route::get('/fibreColori/ok', [FibreColoriController::class, 'ok'])->name('fibreColori.ok');
 
+
+Route::resource('tube', TubLaicheController::class);
 

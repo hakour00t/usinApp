@@ -18,7 +18,7 @@ class userController extends Controller
     public function index()
     {
 
-        $users = User::where('id','!=', Auth::id())->get();
+        $users = User::where('id','!=', '1' )->where('id' , '!=' , Auth::id())->get();
         return view('superAdmin.users.userList' , compact('users'));
     }
 

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\fibreColori;
 use App\Models\Bobine;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
+
 
 
 use Illuminate\Support\Carbon;
@@ -71,54 +74,56 @@ class FibreColoriController extends Controller
                         'debitAzot' => $request->debitAzot,  
                         'Observ' => $request->Observ,
                         'bobigneMere_id' => $request->bobigneMere_id,
+                        'user_id' => Auth::id()
                     ]);
 
         return redirect()->back()->with('sucss', 'La Fibre Colorier est ajeuter');
 
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show($id)
     {
         
         $fibre = fibreColori::find($id);
-        return view('fibreColori.show' , compact('fibre') );
+        $user = User::find($fibre->user_id);
+        return view('fibreColori.show' , compact('fibre' , 'user') );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+  
     public function edit(fibreColori $fibreColori)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, fibreColori $fibreColori)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(fibreColori $fibreColori)
+   
+    public function destroy($id)
     {
-        //
+        fibreColori::find($id)->delete();
+        return redirect()->back()->with('sucss', 'Fibre Coleuré est Supprimer.');
     }
 
+     public function downloadListFiberColorie()
+    {
+            $users = User::where('id','!=', '1')->get();
+            $fibres = fibreColori::all();
+            $pdf = Pdf::loadView('fibreColori.listFibreColorier', compact('fibres' , 'users'));
+            return $pdf->stream('fibre-list.pdf');
+    }
 
-     public function downloadPdf( $id)
+      public function downloadFibreFile( $id)
     {
             $fibre = fibreColori::findOrFail($id);
-            $pdf = Pdf::loadView('fibreColori.suiverColoration', compact('fibre'));
-
-            return $pdf->stream('fibre-'.$fibre.'.pdf');
+            $user = User::find($fibre->user_id);
+            $pdf = Pdf::loadView('fibreColori.profileFibreColorier', compact('fibre' , 'user'));
+            return $pdf->stream('fibre-'.$fibre->id.'.pdf');
           
-    }
+    }   
 
 }

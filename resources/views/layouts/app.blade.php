@@ -115,8 +115,8 @@
                 </div>
                 <div class="offcanvas-body">
                      <ul class="nav flex-column p-4">
-                        <li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li>
-                        <li class="nav-item"><a href="" class="nav-link">Liste des utilisateur</a></li>
+                        {{-- <li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li> --}}
+                        <li class="nav-item"><a href="{{ route('usersList') }}" class="nav-link">Liste des utilisateur</a></li>
                         <li class="nav-item"><a href="{{ route('role.index') }}" class="nav-link">Liste des roles</a></li>
                         <li class="nav-item"><a href="{{ route('permission.index') }}" class="nav-link">Liste des permissions</a></li>
                         <li class="nav-item">

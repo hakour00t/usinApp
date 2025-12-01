@@ -24,7 +24,9 @@ return new class extends Migration
             $table->float('debitAzot');
             $table->text('Observ')->nullable();
             $table->string('bobigneMere_id');
-            $table->foreign('bobigneMere_id')->references('id')->on('bobines')->onDelete('cascade');
+            $table->foreign('bobigneMere_id')->references('id')->on('bobines')->onDelete('cascade'); // refrence on bobine
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');//refrence on user auther
             $table->timestamps();
         });
     }
