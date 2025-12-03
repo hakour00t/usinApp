@@ -69,7 +69,7 @@
                             </div>
                         </div>
 
-                         <div class="col-md-3">
+                        <div class="col-md-3">
                         <label for="color" class="form-label">Coleur </label>
                             <div class="input-group ">
                                

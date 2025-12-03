@@ -1,0 +1,18 @@
+apparaille ->enum = [ 1 ,2 ]
+vitesse -> number
+
+Attellier -> enum [1.2.3.4]
+chifet -> enum [a.b.c.d]
+color -> enum [ blue , orange ,vert , marron , gris , blanc , rouge , noire , jaune , violet , rose , turquoise ]
+ long -> number
+ 
+colorQiolity -> bool
+bobineQiolity -> bool
+tempir -> number
+debitAzot -> number
+
+haseOne -> bobineMere
+
+
+Observ-> text
+

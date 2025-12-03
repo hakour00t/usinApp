@@ -27,7 +27,6 @@ return new class extends Migration
             $table->float('aiguille_gel');
             $table->float('temp_environnement');
             $table->float('temp_sechage_pbt');
-            $table->float('temp_extrusion_eau');
              // Corps
             $table->float('corps1');
             $table->float('corps2');
@@ -58,9 +57,7 @@ return new class extends Migration
             // User relation
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');//refrence on user auther
-            // Tube lâche (relation)
-            $table->string('fiberColori_id');
-            $table->foreign('fiberColori_id')->references('id')->on('fibre_coloris')->onDelete('cascade');//refrence on fibre colorier
+           
             $table->timestamps();
         });
     }
