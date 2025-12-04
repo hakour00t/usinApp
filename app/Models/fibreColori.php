@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\Relations\HasMany;
-// use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class fibreColori extends Model
 {
@@ -22,26 +22,13 @@ class fibreColori extends Model
         return $this->Bobines(Bobine::class,'bobigneMere_id');
     }
 
-    // relation ti users
- 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-   
- //relation to tube lache
-
+     // relation ti users
+        public function user(): BelongsTo { return $this->belongsTo(User::class); }
+    
+    //relation to tube lache
         public function tubLaiches():BelongsToMany
         {
-            return $this->TubLaiche(
-                TubLaiche::class,
-                'fibre_colori_tub_laiche',
-                'fibre_coloris_id',
-                'tub_laiche_id'
-            );
+                return $this->belongsToMany(fibreColori::class ,'fibre_colori_tub_laiche','tub_laiche_id','fibre_colori_id');
         }
-    // public function tubLaiche()
-    // {
-    //     return $this->belongsToMany(TubLaiche::class ,'fibre_colori_tub_laiche');
-    // }
+    
 }

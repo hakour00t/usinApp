@@ -36,8 +36,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
- public function fibreColori(): HasMany
- {
-     return $this->hasMany(fibreColori::class);
- }
+    public function fibreColori(): HasMany {return $this->hasMany(fibreColori::class);}
+    public function TubLaiche(): HasMany {return $this->hasMany(TubLaiche::class);}
 }

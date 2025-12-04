@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class TubLaiche extends Model
 {
     use HasFactory;
@@ -18,16 +20,14 @@ class TubLaiche extends Model
     'auge_chaude' ,'auge_tiede'  , 'auge_froide' , 'color' ,'longueur' , 'pbt_lote' ,'gel_lote' , 'chifet' , 'user_id' , 'fiberColori_id'];
 
 
-
-            public function fibreColoris():BelongsToMany
-            {
-                return $this->fibreColoris(
-                    fibreColori::class,
-                    'fibre_colori_tub_laiche',
-                    'fibre_coloris_id',
-                    'tub_laiche_id'
-                );
-            }
- 
+     // relation ti users
+        public function user(): BelongsTo { return $this->belongsTo(User::class); }
     
+   //relation to fibres 
+     public function fibreColoris():BelongsToMany
+            {
+                return $this->belongsToMany(fibreColori::class ,'fibre_colori_tub_laiche','tub_laiche_id','fibre_colori_id');
+            }
+            
 }
+           

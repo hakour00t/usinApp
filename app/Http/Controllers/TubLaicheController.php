@@ -50,12 +50,10 @@ class TubLaicheController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
-        // dd($request->all());
+       
 
         $valid = $request->validate([
                 // "vitesse_traction" => 'required'
@@ -77,7 +75,7 @@ class TubLaicheController extends Controller
                 "auge_chaude" => 'required',
                 "auge_tiede" => 'required',
                 "auge_froide" => 'required',
-                // "fiberColori_id" => 'required'
+                // "fibreColori_id" => 'required'
                 "chifet" =>  'required',
                 "color" =>  'required',
                 // "pbt_lote" => "45"
@@ -93,9 +91,8 @@ class TubLaicheController extends Controller
             } else {   
                 $nextNumber = "01";
             }
-        $newId = "B".count($request->fiberColori_id). "-"  . $today . "-" . $nextNumber;
+        $newId = "B".count($request->fibreColori_id). "-"  . $today . "-" . $nextNumber;
              
-        // dd($valid);
         $tube = TubLaiche::create([
             "id" => $newId,
             "vitesse_traction" => $request->vitesse_traction,
@@ -118,7 +115,7 @@ class TubLaicheController extends Controller
             "auge_chaude" => $request->auge_chaude,
             "auge_tiede" => $request->auge_tiede,
             "auge_froide" => $request->auge_froide,
-            // "fiberColori_id" => $request->fiberColori_id,
+            // "fibreColori_id" => $request->fibreColori_id,
             "chifet" =>  $request->chifet,
             "color" =>  $request->color,
             "pbt_lote" => $request->pbt_lote,
@@ -126,14 +123,17 @@ class TubLaicheController extends Controller
             "longueur" =>  $request->longueur,
             'user_id' => Auth::id()
         ]);
-        $tube->fibreColoris()->sync($request->fibreColori_id);
-        // dd($tube);
+            
+            $tube->fibreColoris()->sync($request->fibreColori_id);
+            if( $tube->fibreColoris){
+                // dd( $request->fibreColori_id);
+                 return redirect()->back()->with('sucss', 'Tube Lache est Ajeuter');
+            }
 
-        return redirect()->back()->with('sucss', 'Tube Lache est ajeuter');
+       else {
+        return redirect()->back()->withErrors(['error' => 'Pas de Coluer Attacher .']);
+       }
 
-
-
-    // $fibre->colors()->sync($request->colors);
     }
 
     /**
@@ -167,4 +167,13 @@ class TubLaicheController extends Controller
     {
         //
     }
+
+
+     public function downloadList()
+    {
+            $tubes = TubLaiche::all();
+            $pdf = Pdf::loadView('tubes.TubeListPDF', compact('tubes'));
+            return $pdf->stream('tubes-laches-list.pdf');
+    }
+    
 }

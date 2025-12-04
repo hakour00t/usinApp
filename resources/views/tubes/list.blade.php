@@ -11,7 +11,7 @@
    <div class="row-1 "> 
     <a type="button" class="btn btn-success col-5 " href="{{ route('tube.create') }}" > Ajeuter un Tube Lache</a>
          
-    {{-- <a href="{{ route('fibreColori.download.FibreList') }}" class="btn btn-primary col-5">Télécharger PDF</a> --}}
+    <a href="{{ route('tube.download.TubeList') }}" class="btn btn-primary col-5">Télécharger PDF</a>
 
        
   </a>

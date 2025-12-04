@@ -145,9 +145,6 @@
                             <input type="number" class="form-control"  id="auge_froide" name="auge_froide"  step="any" required>
                         </div>
 
-                        
-
-
                         <br>
 
                          <hr class="">
@@ -155,12 +152,12 @@
 
                         @foreach ( $colors as $color )
 
-                            <div class="col-md-3">
-                        <label for="chifet" class="form-label">Chifets </label>
+                        <div class="col-md-3">
+                        <label for="chifet" class="form-label">{{ $color->first()?->color }} </label>
                             <div class="input-group ">
-                                <select class="form-select" id="chifet" name="fiberColori_id[]" >
+                                <select class="form-select" id="fibreColori_id" name="fibreColori_id[]"  @if($color->isEmpty()) disabled @endif >
                                     @foreach ($color as $subColor )
-                                         <option value=" {{ $subColor->id }}"> {{ $subColor->id }} </option>
+                                         <option value="{{ $subColor->id }}"> {{ $subColor->id }} </option>
                                     @endforeach
                                 </select>
                             </div>

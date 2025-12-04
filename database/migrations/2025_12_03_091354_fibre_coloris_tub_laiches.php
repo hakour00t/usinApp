@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fibre_colori_tub_laiche', function (Blueprint $table) {
-            $table->id();
-            
-            $table->string('fibre_coloris_id');
-            $table->foreign('fibre_coloris_id')->references('id')->on('fibre_coloris')->onDelete('cascade');//refrence on fibre colorier
-           
-            $table->string('tub_laiche_id');
-            $table->foreign('tub_laiche_id')->references('id')->on('tub_laiches')->onDelete('cascade');//refrence on fibre tube lache
-      
-            $table->timestamps();
-        });
+                Schema::create('fibre_colori_tub_laiche', function (Blueprint $table) {
+                $table->id();
+
+                $table->string('tub_laiche_id')->foreignId('tub_laiche_id') ->constrained('tub_laiches')->onDelete('cascade');
+
+                $table->string('fibre_colori_id')->foreignId('fibre_colori_id')->constrained('fibre_coloris')->onDelete('cascade');
+                       
+
+                $table->timestamps();
+});
     }
 
     /**

@@ -52,4 +52,5 @@ Route::get('/fibreColori/download/FibreList', [FibreColoriController::class, 'do
 
 
 Route::resource('tube', TubLaicheController::class);
+Route::get('/tube/download/TubeList', [TubLaicheController::class, 'downloadList'])->name('tube.download.TubeList');
 
