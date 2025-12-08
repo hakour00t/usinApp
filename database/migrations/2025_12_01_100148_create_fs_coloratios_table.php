@@ -11,22 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fs_coloratios', function (Blueprint $table) {
+        Schema::create('f_scoloratios', function (Blueprint $table) {
             $table->id(); // number of file
             //date of created_at is the date of file
 
             // Workorder_id later -> relation table WorkOrder
-            $table->unsignedBigInteger('work_order_id');
+            $table->string('work_order_id');
             // $table->foreign('work_order_id')->references('id')->on('work_order')->onDelete('cascade');//refrence on work order
 
             // lote number
-            $table->unsignedBigInteger('lote_id');
+            $table->string('lote_id');
             // $table->foreign('lote_id')->references('id')->on('lote')->onDelete('cascade');//refrence on work lote
 
             $table->enum('apariel', ['1', '2']);// machine number (apariel 1 / 2)
-            $table->float('vitesse');// coloration speed (vitess de coloration)
+            $table->decimal('vitesse');// coloration speed (vitess de coloration)
             // fornissuer from => list des fournissuers
-            $table->unsignedBigInteger('fornissuer_id');
+            $table->string('fornissuer_id');
             // $table->foreign('fornissuer_id')->references('id')->on('fornissuer')->onDelete('cascade');//refrence on work fornissuer
 
             $table->enum('chifet', ['a', 'b' , 'c' , 'd']);// shift a/b/c/d
@@ -45,6 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fs_coloratios');
+        Schema::dropIfExists('f_scoloratios');
     }
 };

@@ -1,5 +1,8 @@
 create ->Fiche de suivi de coloration
 	-> create model fibre colori
+
+===> CRUD Operation
+
        ->Fiche se suivi de Revetement secandaire
        ->create model tube lache
        ->fiche de suivi de file re remplissage

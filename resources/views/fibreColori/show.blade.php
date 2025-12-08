@@ -4,31 +4,31 @@
 @section('content')
 <div class="container">
 
-
-       
-{{-- ['id' ,'apparaille' , 'vitesse' ,'long', 'chifet' , 'color' , 'colorQiolity' , 'bobineQiolity' , 'tempir' , 'debitAzot' , 'Observ','bobigneMere_id']; --}}
-
-    <div class="card text-left">
+    <div class="card text-left text-capitalize">
         <a href="{{ route('fibreColori.downloadPdf', $fibre->id) }}" class="btn btn-success">Télécharger PDF</a>
         <div class="card-header text-center">
              <h5 class="card-title">{{ $fibre->id}}</h5>
         </div>
         <div class="card-body">
              <ul class="list-group list-group-flush">
-                <li class="list-group-item">L'apparille utiliser :  {{$fibre->apparaille}}</li>
-                <li class="list-group-item"> La vitess {{$fibre->vitesse}}</li>
+                  
+        {{-- 'f_scoloratios_id' , --}}
+                <li class="list-group-item">couleur :  {{$fibre->couleur}} </li>
+                <li class="list-group-item"> La longueur {{$fibre->longueur}} Km</li>
                 <li class="list-group-item"> La Longuer de fibre {{$fibre->long}}</li>
-                <li class="list-group-item"> Chifet {{$fibre->chifet}}</li>
-                <li class="list-group-item"> La Coluer {{$fibre->color}}</li>
+                <li class="list-group-item"> la tempirature {{$fibre->tempirature}} °C</li>
+                <li class="list-group-item"> debitAzot {{$fibre->debitAzot}} m<sup>3</sup></li>
                 <li class="list-group-item"> La Qualité De coloration  : @if(($fibre->colorQiolity == '1')) Bien @else Mauvaise @endif</li>
                 <li class="list-group-item"> La Qualité De Bobinage  : @if(($fibre->bobineQiolity  == '1' )) Bien  @else Mauvaise @endif</li>
 
                 <li class="list-group-item"> La Tempiratuer  : {{$fibre->tempir}}</li>
                 <li class="list-group-item"> Dédit D'Azote {{$fibre->debitAzot}}</li>
-                @if(isset($fibre->Observ))<li class="list-group-item"> Observations : {{ $fibre->Observ }} </li>@endif
+                @if(isset($fibre->Observ))<li class="list-group-item"> Observations : {{ $fibre->observation }} </li>@endif
 
-                <li class="list-group-item"> Id de bobine Mére {{$fibre->bobigneMere_id}}</li>
-                <li class="list-group-item"> L'opératuer :  {{$user->grad}} {{$user->first_name}}  {{$user->last_name}}</li>
+                <li class="list-group-item"> Id de bobine Mére : {{$fibre->Bobine?->id ?? 'put pas chargier la bobine'}}
+                      {{-- loungeur : {{$fibre->Bobine->id}}  --}}
+                    </li>
+                {{-- <li class="list-group-item"> L'opératuer :  {{$user->grad}} {{$user->first_name}}  {{$user->last_name}} --}}
 
             </ul>
              

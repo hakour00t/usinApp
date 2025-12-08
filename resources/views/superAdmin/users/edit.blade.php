@@ -76,7 +76,7 @@
  
 
             <!-- Submit button -->
-            <button data-mdb-ripple-init type="submit" class="btn btn-success "> Crée</button>
+            <button data-mdb-ripple-init type="submit" class="btn btn-primary col-3"> Modifer</button>
             </form>
     </div>
   

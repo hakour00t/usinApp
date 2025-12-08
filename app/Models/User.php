@@ -14,11 +14,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable ,HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = ['first_name','last_name','adress','grad','date','email','password' ];
     
     protected $hidden = [
@@ -26,11 +21,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
@@ -38,4 +28,7 @@ class User extends Authenticatable
 
     public function fibreColori(): HasMany {return $this->hasMany(fibreColori::class);}
     public function TubLaiche(): HasMany {return $this->hasMany(TubLaiche::class);}
+    
+    public function FScoloratio(): HasMany {return $this->hasMany(FScoloratio::class);} // FScoloratio
+   
 }

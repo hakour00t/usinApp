@@ -25,7 +25,7 @@ class adminSeeder extends Seeder
             'adress' => 'oumelboighi',
             'grad'=> 'Aspirant',
             'date' => '1999-01-24',
-            'email' => 'koal.abdelhak@app.com',
+            'email' => 'abdelhak.koal@app.com',
             'password' => Hash::make('abedelhakAdmin') 
         ]);
 

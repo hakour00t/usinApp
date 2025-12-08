@@ -17,7 +17,8 @@ return new class extends Migration
             $table->enum('couleur', [ 'blue' , 'orange' ,'vert' , 'marron' , 'gris' , 'blanc' , 'rouge' , 'noire' , 'jaune' , 'violet' , 'rose' , 'turquoise' ]);
             // longueur
             $table->float('longueur');
-
+            // observation 
+            $table->longText('observation')->nullable()->default('');
             // relation fiche de suivi de production de fils de remplissage .
             $table->unsignedBigInteger('f_s_remplissages_id');
             $table->foreign('f_s_remplissages_id')->references('id')->on('f_s_remplissages')->onDelete('cascade');//refrence on f_s_remplissages

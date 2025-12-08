@@ -87,7 +87,7 @@ class userController extends Controller
     public function update(Request $request, $id)
     {
         //
-        dd($request->all());
+        // dd($request->all());
         $user = User::find($id);
 
             $user->first_name = $request->first_name ;

@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('f_s_remplissages', function (Blueprint $table) {
             $table->id();
-              // Workorder_id later -> relation table WorkOrder
-            $table->unsignedBigInteger('work_order_id');
+              
+             // Workorder_id later -> relation table WorkOrder
+            $table->string('work_order_id');
             // $table->foreign('work_order_id')->references('id')->on('work_order')->onDelete('cascade');//refrence on work order
 
             // lote number
-            $table->unsignedBigInteger('lote_id');
+            $table->string('lote_id');
             // $table->foreign('lote_id')->references('id')->on('lote')->onDelete('cascade');//refrence on work lote
+
             
             $table->float('vitesse_traction');
             $table->float('vitesse_extrudeuse');

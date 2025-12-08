@@ -23,10 +23,12 @@ class FibreColoriController extends Controller
         return view('fibreColori.list', compact('fibreColoris'));
     }
 
-    public function create()
+    public function create($id)
     {
+
+        $fs_id = $id ;// passer id de fiche de suivi
         $bobines = Bobine::all();
-        return view('fibreColori.create' , compact('bobines') );
+        return view('fibreColori.create' , compact('bobines' , 'fs_id') );
     }
 
     /**
@@ -34,51 +36,47 @@ class FibreColoriController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        
-          $validated = $request->validate( [
-            'apparaille' => 'required',
-            'vitesse' => 'required', 
-            'chifet' => 'required',
-            'long' => 'required',
-            'color' => 'required',
-            'colorQiolity' => 'boolean' , 
-            'bobineQiolity' => 'boolean' , 
-            'tempir' => 'required' , 
-            'debitAzot' => 'required' , 
-            // 'Observ' => 'required',
-            'bobigneMere_id' => 'required'
+        //  dd($request->all());
+        try {
+             $validated = $request->validate( [
+                'couleur' =>'required' ,
+                'longueur' =>'required' ,
+                // 'colorQiolity' =>'required' ,
+                // 'bobineQiolity' =>'required' ,
+                'tempirature' =>'required' ,
+                'debitAzot' =>'required' ,
+                'observation' =>'required' ,
+                'bobigneMere_id' =>'required' ,
+                'f_scoloratios_id' =>'required' ,
         ]);
- $today = Carbon::now()->format('Ymd');
- 
-                 
-                    $last = fibreColori::where('id', 'like','A-'. $today . '%')->orderBy('id', 'desc')->first();
-                    if ($last) {
-                        $lastNumber = (int) substr($last->id, -2);
-                        $nextNumber = str_pad($lastNumber + 1, 2, '0', STR_PAD_LEFT);
-                    } else {   
-                        $nextNumber = "01";
-                    }
-                    $newId = "A-" . $today . "-" . $nextNumber;
-             
-                    fibreColori::create([
-                        'id' => $newId,
-                        'apparaille' => $request->apparaille,
-                        'vitesse' => $request->vitesse, 
-                        'chifet' => $request->chifet,
-                        'color' =>$request->color, 
-                        'long' => $request->long,
-                        'colorQiolity' => $request->boolean('colorQiolity'), 
-                        'bobineQiolity' => $request->boolean('bobineQiolity'), 
-                        'tempir' => $request->tempir,
-                        'debitAzot' => $request->debitAzot,  
-                        'Observ' => $request->Observ,
-                        'bobigneMere_id' => $request->bobigneMere_id,
-                        'user_id' => Auth::id()
-                    ]);
+            $today = Carbon::now()->format('Ymd');         
+            $last = fibreColori::where('id', 'like','A-'. $today . '%')->orderBy('id', 'desc')->first();
+            if ($last) {
 
-        return redirect()->back()->with('sucss', 'La Fibre Colorier est ajeuter');
+                $lastNumber = (int) substr($last->id, -2);
+                $nextNumber = str_pad($lastNumber + 1, 2, '0', STR_PAD_LEFT);
+            
+            } else {  $nextNumber = "01";}
 
+        } catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+    
+    $newId = "A-" . $today . "-" . $nextNumber;
+
+            $fibre =  fibreColori::create([
+                 'id' => $newId,
+                 'couleur' => $request->couleur ,
+                 'longueur' => $request->longueur ,
+                 'colorQiolity' => $request->colorQiolity ?? 0,
+                 'bobineQiolity' => $request->bobineQiolity ?? 0 ,
+                 'tempirature' => $request->tempirature ,
+                 'debitAzot' => $request->debitAzot ,
+                 'observation' => $request->observation ,
+                 'bobigneMere_id' => $request->bobigneMere_id ,
+                 'f_scoloratios_id' => $request->f_scoloratios_id ,
+                 'user_id' => Auth::id()
+             ]);
+             if($fibre)return redirect()->back()->with('sucss', 'La Fibre Colorier est ajeuter');
+             else{ return back()->with('error', 'la fibre colorier n\'est  pa ajeuter.'); }
     }
 
    
@@ -86,8 +84,7 @@ class FibreColoriController extends Controller
     {
         
         $fibre = fibreColori::find($id);
-        $user = User::find($fibre->user_id);
-        return view('fibreColori.show' , compact('fibre' , 'user') );
+        return view('fibreColori.show' , compact('fibre') );
     }
 
   

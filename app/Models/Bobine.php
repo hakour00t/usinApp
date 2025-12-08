@@ -17,10 +17,7 @@ class Bobine extends Model
         'length',
     ];
  
-    public function fibreColoris(): HasMany
-    {
-        return $this->hasMany(fibreColori::class);
-    }
+    public function fibreColoris(): HasMany {return $this->hasMany(fibreColori::class);}
 
 
 }

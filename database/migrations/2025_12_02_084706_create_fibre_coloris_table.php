@@ -30,8 +30,8 @@ return new class extends Migration
             // observation
             $table->text('observation')->nullable();
             // relation on fiche de suivi de coloratios
-            $table->unsignedBigInteger('fs_coloratios_id');
-            $table->foreign('fs_coloratios_id')->references('id')->on('fs_coloratios')->onDelete('cascade');//
+            $table->unsignedBigInteger('f_scoloratios_id');
+            $table->foreign('f_scoloratios_id')->references('id')->on('f_scoloratios')->onDelete('cascade');//
             $table->timestamps();
         });
     }
