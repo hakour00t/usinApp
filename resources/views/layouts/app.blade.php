@@ -132,7 +132,7 @@
                         <li class="nav-item"><a href="{{ route('bobines.index') }}" class="nav-link">Liste des boubines nu</a></li>
                         <li class="nav-item"><a href="{{ route('coloration.index') }}" class="nav-link">Coloration</a></li>
                         
-                        <li class="nav-item"><a href="{{ route('fibreColori.index') }}" class="nav-link">Liste des Fibre Colorier</a></li>
+                        {{-- <li class="nav-item"><a href="{{ route('coloration.fibreColori.index') }}" class="nav-link">Liste des Fibre Colorier</a></li> --}}
                         <li class="nav-item"><a href="{{ route('tube.index') }}" class="nav-link">Liste des Tubes Laches </a></li>
 
 

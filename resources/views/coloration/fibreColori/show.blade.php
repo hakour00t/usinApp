@@ -5,7 +5,7 @@
 <div class="container">
 
     <div class="card text-left text-capitalize">
-        <a href="{{ route('fibreColori.downloadPdf', $fibre->id) }}" class="btn btn-success">Télécharger PDF</a>
+        {{-- <a href="{{ route('coloration.fibreColori.downloadPdf', $fibre->id) }}" class="btn btn-success">Télécharger PDF</a> --}}
         <div class="card-header text-center">
              <h5 class="card-title">{{ $fibre->id}}</h5>
         </div>
@@ -25,7 +25,8 @@
                 <li class="list-group-item"> Dédit D'Azote {{$fibre->debitAzot}}</li>
                 @if(isset($fibre->Observ))<li class="list-group-item"> Observations : {{ $fibre->observation }} </li>@endif
 
-                <li class="list-group-item"> Id de bobine Mére : {{$fibre->Bobine?->id ?? 'put pas chargier la bobine'}}
+                <li class="list-group-item"> Id de bobine Mére : {{$fibre->Bobine?->id ?? 'put pas chargier la bobine'}}  
+                    loungeur : {{$fibre->Bobine?->length ?? 'put pas chargier la bobine'}} 
                       {{-- loungeur : {{$fibre->Bobine->id}}  --}}
                     </li>
                 {{-- <li class="list-group-item"> L'opératuer :  {{$user->grad}} {{$user->first_name}}  {{$user->last_name}} --}}

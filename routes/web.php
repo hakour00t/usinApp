@@ -17,6 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashbord', [App\Http\Controllers\HomeController::class, 'index'])->name('dashbord');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/usersList', [App\Http\Controllers\userController::class, 'index'])->name('usersList');
 Route::get('/user/create', [App\Http\Controllers\userController::class, 'create'])->name('user.create');
 Route::post('/user/store', [App\Http\Controllers\userController::class, 'store'])->name('user.store');
@@ -34,13 +35,14 @@ Route::post('/file/coloratione', [App\Http\Controllers\fileControlles::class, 'i
 // bobines 
 Route::resource('bobines', BobineController::class)->except(['show', 'edit' , 'create']);
 //fibreColori
-Route::resource('fibreColori', FibreColoriController::class);
-//passer id de fiche de suivi a formullaire de creation de fibre colorier
+Route::resource('fibreColori', FibreColoriController::class)->except(['index']);
 Route::get('fibreColori/create/{id}', [FibreColoriController::class , 'create'])->name('fibreColori.create');
 
-Route::get('/fibreColori/downloadPdf/{id}', [FibreColoriController::class, 'downloadFibreFile'])->name('fibreColori.downloadPdf');
+//passer id de fiche de suivi a formullaire de creation de fibre colorier
+
+// Route::get('/fibreColori/downloadPdf/{id}', [FibreColoriController::class, 'downloadFibreFile'])->name('fibreColori.downloadPdf');
 // Route::get('/fibreColori/downloadListFiberColorie', [FibreColoriController::class, 'downloadListFiberColorie'])->name('fibreColori.downloadListFiberColorie');
-Route::get('/fibreColori/download/FibreList', [FibreColoriController::class, 'downloadListFiberColorie'])->name('fibreColori.download.FibreList');
+// Route::get('/fibreColori/download/FibreList', [FibreColoriController::class, 'downloadListFiberColorie'])->name('fibreColori.download.FibreList');
 // Route::get('/fibreColori/ok', [FibreColoriController::class, 'ok'])->name('fibreColori.ok');
 
 

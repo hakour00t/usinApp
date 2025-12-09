@@ -46,7 +46,7 @@ class FScoloratioController extends Controller
             "fornissuer_id" => $request->chifet ,
             "user_id"=>auth::id(),
         ]);
-        if($file){return redirect()->back()->with('sucss', 'la fiche de suivi la coloration est Ajeuter.');}
+        if($file){return redirect()->route('coloration.show',$file->id)->with('sucss', 'la fiche de suivi la coloration est Ajeuter.');}
         else{ return back()->with('error', 'la fiche de suivi la coloration n\'est  pa ajeuter.'); }
         
         
@@ -66,9 +66,10 @@ class FScoloratioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(FScoloratio $fScoloratio)
+    public function edit($id)
     {
-        //
+        $fiche =  FScoloratio::find($id);
+        return view('coloration.edit' , compact('fiche'));
     }
 
     /**

@@ -19,8 +19,8 @@ class FibreColoriController extends Controller
 
     public function index()
     {
-        $fibreColoris = fibreColori::all();
-        return view('fibreColori.list', compact('fibreColoris'));
+        // $fibreColoris = fibreColori::all();
+        // return view('coloration.fibreColori.list', compact('fibreColoris'));
     }
 
     public function create($id)
@@ -28,7 +28,7 @@ class FibreColoriController extends Controller
 
         $fs_id = $id ;// passer id de fiche de suivi
         $bobines = Bobine::all();
-        return view('fibreColori.create' , compact('bobines' , 'fs_id') );
+        return view('coloration.fibreColori.create' , compact('bobines' , 'fs_id') );
     }
 
     /**
@@ -75,8 +75,8 @@ class FibreColoriController extends Controller
                  'f_scoloratios_id' => $request->f_scoloratios_id ,
                  'user_id' => Auth::id()
              ]);
-             if($fibre)return redirect()->back()->with('sucss', 'La Fibre Colorier est ajeuter');
-             else{ return back()->with('error', 'la fibre colorier n\'est  pa ajeuter.'); }
+             if($fibre)return redirect()->route('coloration.show',$fibre->FScoloratio->id)->with('sucss', 'La Fibre Colorier est ajeuter');
+             else return back()->with('error', 'la fibre colorier n\'est  pa ajeuter.'); 
     }
 
    
@@ -84,13 +84,14 @@ class FibreColoriController extends Controller
     {
         
         $fibre = fibreColori::find($id);
-        return view('fibreColori.show' , compact('fibre') );
+        return view('coloration.fibreColori.show' , compact('fibre') );
     }
 
   
-    public function edit(fibreColori $fibreColori)
+    public function edit($id)
     {
-        //
+        // $fibre = fibreColori::find($id);
+        // return view('coloration.fibreColori.edit' , compact('fibre') );
     }
 
     
@@ -110,7 +111,7 @@ class FibreColoriController extends Controller
     {
             $users = User::where('id','!=', '1')->get();
             $fibres = fibreColori::all();
-            $pdf = Pdf::loadView('fibreColori.listFibreColorier', compact('fibres' , 'users'));
+            $pdf = Pdf::loadView('coloration.fibreColori.listFibreColorier', compact('fibres' , 'users'));
             return $pdf->stream('fibre-list.pdf');
     }
 
@@ -118,7 +119,7 @@ class FibreColoriController extends Controller
     {
             $fibre = fibreColori::findOrFail($id);
             $user = User::find($fibre->user_id);
-            $pdf = Pdf::loadView('fibreColori.profileFibreColorier', compact('fibre' , 'user'));
+            $pdf = Pdf::loadView('coloration.fibreColori.profileFibreColorier', compact('fibre' , 'user'));
             return $pdf->stream('fibre-'.$fibre->id.'.pdf');
           
     }   

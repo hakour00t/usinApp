@@ -32,31 +32,33 @@
         <div class="row ">
             <div class="col ">
             <div class="card">
-            <h3 class="card-header text-capitalize">crée une fiche de suivi de laproduction de coloration f.o</h3>
+            <h3 class="card-header text-capitalize">Modifier la fiche de suivi de production de coloration </h3>
                
             <form action="{{ route('coloration.store') }} " method="post" class="row g-2 p-4">
                 @method('post')
                 @csrf
 
                 {{-- work order id  text input --}}
+                {{-- protected $fillable = [ 'work_order_id' ,'apariel' ,'lote_id', 'vitesse' ,'fornissuer_id' ,'chifet' ,'user_id'] ; --}}
                 <div class="col-md-4">
                     <label for="work_order_id" class="form-label">le id de work order</label>
-                    <input type="text" class="form-control"  id="work_order_id" name="work_order_id" placeholder="WO-20251201-01" required>
+                    <input type="text" class="form-control"  id="work_order_id" name="work_order_id"  value="{{ $fiche->work_order_id }}" required>
                 </div>
 
                  {{-- production lote id  text input --}}
                 <div class="col-md-4">
                     <label for="lote_id" class="form-label">le id de work lote</label>
-                    <input type="text" class="form-control"  id="lote_id" name="lote_id"  placeholder="LO-20251102-02" required>
+                    <input type="text" class="form-control"  id="lote_id" name="lote_id"  value="{{ $fiche->lote_id }}" required>
                 </div>
                 <div class="col-md-4">
                 <label for="Apparaille" class="form-label">Selectioner L'apariel</label>
                     <div class="input-group ">
-                       
-                        <select class="form-select" id="apariel" name="apariel" required>
-                            <option >sélectionner un'aparile</option>
-                            <option value="1">apariel 01</option>
-                            <option value="2">apariel 02</option>
+                        <select class="form-select" id="apariel" name="apariel"  required>
+                     
+                        <option value="{{ $fiche->apariel }}">
+                            Apariel  {{ $fiche->apariel }}
+                        </option>
+                      
                         </select>
                     </div>
                 </div>
@@ -65,7 +67,7 @@
 
                 <div class="col-md-4 ">
                     <label for="vitesse" class="form-label">Vitesse de coloration (tr/min)</label>
-                    <input type="number" class="form-control"  id="vitesse" name="vitesse"  step="any"  placeholder="1234" required>
+                    <input type="number" class="form-control"  id="vitesse" name="vitesse"  step="any"  value="{{ $fiche->vitesse }}" required>
                 </div>
                 
 
@@ -74,11 +76,7 @@
                 <label for="chifet" class="form-label">les chifets </label>
                     <div class="input-group ">
                         <select class="form-select" id="chifet" name="chifet" required>
-                            <option >sélectionner un chifet</option>
-                            <option value="a">Chifet A</option>
-                            <option value="b">Chifet B</option>
-                            <option value="c">Chifet C</option>
-                            <option value="d">Chifet D</option>
+                            <option value="{{ $fiche->chifet }}"> chifet  <span > {{ $fiche->chifet }}</span></option>
                         </select>
                     </div>
                 </div>

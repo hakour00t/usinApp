@@ -44,8 +44,7 @@
     <table class="table">
     <thead>
       <tr>
-      
-      {{-- fichs_coloration--> 'work_order_id' ,'apariel' ,'chifet', 'vitesse' ,'fornissuer_id' , --}}
+
         <th scope="col" class="text-capitalize">ID</th>
         <th scope="col" class="text-capitalize">id de work order</th>
         <th scope="col" class="text-capitalize">aparile</th>

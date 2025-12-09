@@ -28,7 +28,7 @@ class fibreColori extends Model
     ];
     
     public function Bobine(): BelongsTo { return $this->belongsTo(Bobine::class , 'bobigneMere_id' );}// relation to bobine
-    public function FScoloratio(): BelongsTo { return $this->belongsTo(FScoloratio::class );}// relation to  fiche de suivi de coloration
+    public function FScoloratio(): BelongsTo { return $this->belongsTo(FScoloratio::class ,'f_scoloratios_id' );}// relation to  fiche de suivi de coloration
     
     
     //relation to tube lache

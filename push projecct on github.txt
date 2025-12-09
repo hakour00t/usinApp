@@ -1,0 +1,43 @@
+-> push projecct on github
+-> make navbare
+->CRUD roles and permissions 
+-> protect routes and viwes 
+-> sart code for problems
+
+
+26/11===>
+collect all data ofcoloration ligne
+create all files 
+
+		stockage
+- get liste des bobngne née -> type SCV 
+  -> improt SVC load in database
+  		coloration
+  *---> creattion de ficher de suive coloration
+  	->creation de bobine colorier 
+  	->fermer la fiche	
+  ==prod=> des bobigne colorer avec id
+		
+	Revetement secandaire
+--> get id de fibre colorier
+-->fiche de suivi de Revetement secandaire
+  ->
+  ==> prod => Tube Lache
+  
+  
+  		Production de fil de remplissage
+  -> demarier fiche de suivi 
+   -> ajeuter de fil 
+   fermer = prod ==> fil de remplissage par ids 
+		torsadageSZ
+--->get tube lache ids -AND- id fil de Romplissage
+-> fiche suivi torssadageSZ
+
+==>prod=> id tube torsadéSZ
+			
+			génage du cable
+---> get id de cable torssader -RO- chouche N1
+ -> fiche de suivi de gaine du cable
+ ==> prod=> ID DE CABLE
+ 
+
