@@ -23,7 +23,7 @@ return new class extends Migration
 
             // User relation
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');//refrence on user auther
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
            
             // relation fiche de suivi de production revetement secandaire
             $table->unsignedBigInteger('f_s_revetement_secs_id');

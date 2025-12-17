@@ -11,6 +11,30 @@
   Ajeuter un boubinne
 </button>
 
+
+
+ <div class="container m-2">
+                    @if (session('sucss'))
+                    <div class="alert alert-success">
+                    
+                    {{ session('sucss') }}
+                            
+                        </div>
+                    @endif
+
+                {{-- for show errors comming from controllers. --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                    </div>
+
+
 <!-- Modal -->
     <div class="modal fade" id="createBobine" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -24,8 +48,8 @@
                 @method('post')
                 @csrf
                 <div class="mb-3">
-                    <label for="role" class="form-label">Longuer de bobinne en Km</label>
-                    <input type="number" class="form-control" id="role" step="any" name="length">
+                    <label for="loungeur" class="form-label">Longuer de bobinne en Km</label>
+                    <input type="number" class="form-control" id="loungeur" step="any" name="loungeur">
                 </div>
             
             
@@ -39,14 +63,7 @@
       </div>
     </div>
 
-    @if (session('sucss'))
-        <div class="alert alert-success">
-           
-            {{ session('sucss') }}
-            
-        </div>
-    @endif
-       
+    
     <table class="table">
   <thead>
     <tr>
@@ -63,7 +80,7 @@
         <tr>
             
             <td>{{ $bobine->id }} </td>
-            <td>{{ $bobine->length }} </td>
+            <td>{{ $bobine->loungeur }} </td>
 
             <td>
               
@@ -86,7 +103,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="role" class="form-label">Longuer de bobinne en Km</label>
-                                <input type="number" class="form-control" id="role" step="any" name="length" value="{{ $bobine->length }}">
+                                <input type="number" class="form-control" id="role" step="any" name="loungeur" value="{{ $bobine->loungeur }}">
                             </div>
                         
                         
@@ -127,11 +144,9 @@
                                 <button type="submit" class="btn btn-danger fw-bold">Supprimer</button>
                             </form>
                         </div>
-
                         </div>
                         </div>
                     </div>
-                  
 
             </td>
         </tr>

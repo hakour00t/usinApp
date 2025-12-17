@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('work_orders', function (Blueprint $table) {
-            $table->id();
+        Schema::create('lotes', function (Blueprint $table) {
+            
+            $table->string('id')->primary();    // PRIMARY TEXT KEY
+            $table->text('number');
+            // User relation
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('work_orders');
+        Schema::dropIfExists('lotes');
     }
 };

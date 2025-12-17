@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bobine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
 class BobineController extends Controller
@@ -14,46 +15,38 @@ class BobineController extends Controller
     public function index()
     {
         $bobines = Bobine::all();
-        return view('bobines.list', compact('bobines'));
+        return view('bobines.index', compact('bobines'));
     }
 
-    /**.
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
-        $request->validate([
-            'length' => 'required|numeric'
-        ]);
+        // dd($request->all());
+        try {$request->validate(['loungeur' => 'required|numeric']);
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+        
+        $today = Carbon::now()->format('Ymd');
+        $last = Bobine::where('id', 'like','G-' . $today . '%')->orderBy('id', 'desc')->first();
 
-          $today = Carbon::now()->format('Ymd');
-
-            $last = Bobine::where('id', 'like', $today . '%')->orderBy('id', 'desc')->first();
-
-                    if ($last) {
-                        
-                        $lastNumber = (int) substr($last->id, -2);
-                        $nextNumber = str_pad($lastNumber + 1, 2, '0', STR_PAD_LEFT);
-                    } else {
-                       
-                        $nextNumber = "01";
-                    }
-                    $newId = $today . "-G" . $nextNumber;
-      // create bobine
-        Bobine::create([
-                        'id' => $newId,
-                        'length' => $request->length,
-                    ]);
-
-        return redirect()->back()->with('sucss', 'Bobine est ajeuter');
+        if ($last) {
+            
+            $lastNumber = (int) substr($last->id, -2);
+            $nextNumber = str_pad($lastNumber + 1, 2, '0', STR_PAD_LEFT);
+        } else {
+           
+            $nextNumber = "01";
+        }
+        $newId = 'G-' . $today .'-'. $nextNumber;
+         try {  Bobine::create(['id' => $newId,'loungeur' => $request->loungeur,'user_id' => Auth::id() ]);
+            return redirect()->back()->with('sucss', 'Bobine est ajeuter');
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+        
     }
 
     /**
@@ -77,13 +70,15 @@ class BobineController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $request->validate([
-            'length' => 'required|numeric'
-        ]);
+           try {$request->validate(['loungeur' => 'required|numeric']);
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
 
-       Bobine::find($id)->update($request->all());
-
+         try { Bobine::find($id)->update($request->all());
         return redirect()->back()->with('sucss', 'Bobine est modifier');
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+        
+
+       
     }
 
     /**

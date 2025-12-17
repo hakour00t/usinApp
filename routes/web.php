@@ -9,6 +9,10 @@ use App\Http\Controllers\BobineController;
 use App\Http\Controllers\FibreColoriController;
 use App\Http\Controllers\TubLaicheController;
 use App\Http\Controllers\FScoloratioController;
+use App\Http\Controllers\AparileController;
+use App\Http\Controllers\LoteController;
+use App\Http\Controllers\WorkOrderController;
+use App\Http\Controllers\ChifetsController;
 
 
 Auth::routes();
@@ -40,15 +44,18 @@ Route::get('fibreColori/create/{id}', [FibreColoriController::class , 'create'])
 
 //passer id de fiche de suivi a formullaire de creation de fibre colorier
 
-// Route::get('/fibreColori/downloadPdf/{id}', [FibreColoriController::class, 'downloadFibreFile'])->name('fibreColori.downloadPdf');
-// Route::get('/fibreColori/downloadListFiberColorie', [FibreColoriController::class, 'downloadListFiberColorie'])->name('fibreColori.downloadListFiberColorie');
-// Route::get('/fibreColori/download/FibreList', [FibreColoriController::class, 'downloadListFiberColorie'])->name('fibreColori.download.FibreList');
-// Route::get('/fibreColori/ok', [FibreColoriController::class, 'ok'])->name('fibreColori.ok');
-
-
 Route::resource('tube', TubLaicheController::class);
 Route::get('/tube/download/TubeList', [TubLaicheController::class, 'downloadList'])->name('tube.download.TubeList');
 
 
 // les route de coloration
 Route::resource('coloration', FScoloratioController::class);// coloration/...
+
+//les routes de aparile
+Route::resource('aparile', AparileController::class)->except(['create' , 'show' , 'edit']);
+//les routes de lotes
+Route::resource('lote', LoteController::class)->except(['create' , 'show' , 'edit']);
+//les routes de chiftes
+Route::resource('chifet', ChifetsController::class)->except(['create' , 'show' , 'edit']);
+//les routes de work order
+Route::resource('work_order', WorkOrderController::class);

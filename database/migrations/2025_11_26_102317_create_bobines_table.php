@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('bobines', function (Blueprint $table) {
             $table->string('id')->primary();    // PRIMARY TEXT KEY
-            $table->float('length');            //
+            $table->float('loungeur'); 
+            // User relation
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');           //
             $table->timestamps();
         });
     }

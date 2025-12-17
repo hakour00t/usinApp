@@ -28,7 +28,10 @@ class User extends Authenticatable
 
     public function fibreColori(): HasMany {return $this->hasMany(fibreColori::class);}
     public function TubLaiche(): HasMany {return $this->hasMany(TubLaiche::class);}
-    
-    public function FScoloratio(): HasMany {return $this->hasMany(FScoloratio::class);} // FScoloratio
+    public function FScoloratio(): HasMany {return $this->hasMany(FScoloratio::class);}
+    public function Lote(): HasMany {return $this->hasMany(Lote::class);} 
+    public function aparile(): HasMany {return $this->hasMany(aparile::class);} 
+    public function bobine(): HasMany {return $this->hasMany(bobine::class);} 
+    public function WorkOrder(): HasMany {return $this->hasMany(WorkOrder::class);} 
    
 }

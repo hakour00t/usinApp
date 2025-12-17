@@ -116,10 +116,10 @@
                 <div class="offcanvas-body">
                      <ul class="nav flex-column p-4">
                         {{-- <li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li> --}}
-                        <li class="nav-item"><a href="{{ route('usersList') }}" class="nav-link">Liste des utilisateur</a></li>
-                        <li class="nav-item"><a href="{{ route('role.index') }}" class="nav-link">Liste des roles</a></li>
-                        <li class="nav-item"><a href="{{ route('permission.index') }}" class="nav-link">Liste des permissions</a></li>
-                        <li class="nav-item">
+                        <li class="nav-item"><a href="{{ route('usersList') }}" class="nav-link">Utilisateur</a></li>
+                        {{-- <li class="nav-item"><a href="{{ route('role.index') }}" class="nav-link">Liste des roles</a></li> --}}
+                        {{-- <li class="nav-item"><a href="{{ route('permission.index') }}" class="nav-link">Liste des permissions</a></li> --}}
+                        {{-- <li class="nav-item">
                              <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Coloraction
                                 </a>
@@ -128,8 +128,8 @@
                                     <li><a class="dropdown-item" href="#">no action</a></li>
                                     <li><a class="dropdown-item" href="#">no action</a></li>>
                                 </ul>
-                        </li>
-                        <li class="nav-item"><a href="{{ route('bobines.index') }}" class="nav-link">Liste des boubines nu</a></li>
+                        </li> --}}
+                        {{-- <li class="nav-item"><a href="{{ route('bobines.index') }}" class="nav-link">Bobines nu</a></li> --}}
                         <li class="nav-item"><a href="{{ route('coloration.index') }}" class="nav-link">Coloration</a></li>
                         
                         {{-- <li class="nav-item"><a href="{{ route('coloration.fibreColori.index') }}" class="nav-link">Liste des Fibre Colorier</a></li> --}}

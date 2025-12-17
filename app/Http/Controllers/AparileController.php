@@ -4,62 +4,79 @@ namespace App\Http\Controllers;
 
 use App\Models\aparile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AparileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $apariles = aparile::all();
+        return view('apariles.index' ,compact('apariles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        //  dd($request->all());
+        try{
+                $aparile = $request->validate([
+                    'name' => 'required',
+            ]);
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+
+        try{
+                $aparile = Aparile::create([
+                     'name' => $request->name,
+                     'user_id' => Auth::id(),
+                ]) ;
+                return redirect()->back()->with('sucss' , 'l\'aparile est ajeuter.');
+            }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(aparile $aparile)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(aparile $aparile)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, aparile $aparile)
+  
+    public function update(Request $request, $id)
     {
-        //
+
+        try{
+                $aparile = Aparile::find($id);
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+
+        try{
+                $validated = $request->validate(['name' => 'required']);
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+
+         try{
+                $aparile->update($validated);
+                return redirect()->back()->with('sucss' , 'l\'aparile est modifier.');
+            }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(aparile $aparile)
+    public function destroy($id)
     {
-        //
+        try{
+                $aparile = Aparile::find($id);
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+
+        try{
+                $aparile->delete();
+                return redirect()->back()->with('sucss' , 'l\'aparile est supprimer.');
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+
     }
 }

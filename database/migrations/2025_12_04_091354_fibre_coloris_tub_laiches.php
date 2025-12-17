@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fibre_colori_tub_laiche');
+        Schema::dropIfExists('fibre_coloris_tube_laches');
     }
 };

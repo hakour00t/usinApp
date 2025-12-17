@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Lote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class LoteController extends Controller
 {
@@ -12,28 +14,48 @@ class LoteController extends Controller
      */
     public function index()
     {
-        //
+        $lotes = Lote::all();
+        return view('lotes.index' , compact('lotes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        //  dd($request->all());
+        try{
+                $aparile = $request->validate([
+                    'number' => 'required',
+            ]);
+        
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+
+    
+          $today = Carbon::now()->format('Ymd');         
+            $last = Lote::where('id', 'like','LO-' .$today .'-'.'%')->orderBy('id', 'desc')->first();
+          
+            if ($last) {
+                $lastNumber = (int) substr($last->id, -2);
+                $nextNumber = str_pad($lastNumber + 1, 2, '0', STR_PAD_LEFT);
+            
+            } else {  $nextNumber = "01";}
+
+            $newId = "LO-" . $today . "-" . $nextNumber;
+
+        try{
+                $aparile = Lote::create([
+                    'id' => $newId,
+                    'number' => $request->number,
+                    'user_id' => Auth::id(),
+                ]) ;
+                return redirect()->back()->with('sucss' , 'lote est ajeuter.');
+            }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(Lote $lote)
     {
         //
@@ -50,16 +72,35 @@ class LoteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Lote $lote)
+    public function update(Request $request, $id)
     {
-        //
+          try{
+                $lote = Lote::find($id);
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+
+        try{
+                $validated = $request->validate(['number' => 'required']);
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+
+         try{
+                $lote->update($validated);
+                return redirect()->back()->with('sucss' , 'lote est modifier.');
+            }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Lote $lote)
+    public function destroy( $id)
     {
-        //
+        $lote = Lote::find($id);
+          try{
+                $aparile = lote::find($id);
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
+
+        try{
+                $aparile->delete();
+                return redirect()->back()->with('sucss' , 'lote est supprimer.');
+        }catch(ValidationException $e){return back()->withErrors($e->validator)->withInput(); }
     }
 }
